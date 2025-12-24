@@ -8,7 +8,7 @@ const UNIT = 24;
 const handling = {
     "das": 117,
     "arr": 0,
-    "sdf": 0
+    "softdrop": 0
 };
 let game = new Game(handling, null);
 

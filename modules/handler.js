@@ -50,7 +50,7 @@ class Handler{
 
         if (this.softdropHeld){
             this.softdropTimer += dt;
-            for (let _=0; _<board.h; _++){
+            for (let _=0; _<board.h; _++){ 
                 if (this.softdropTimer >= this.softdrop){
                     this.softdropTimer -= this.softdrop;
                     movementQueue.push([0, 1]);

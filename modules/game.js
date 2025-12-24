@@ -14,7 +14,7 @@ class Game{
     }
     
     restart(seed=null){
-        this.seed = Math.floor(Date.now());
+        this.seed = Math.floor(Date.now())
         if (seed != null)
             this.seed = seed;
         this.rng = rng(this.seed);
@@ -86,7 +86,6 @@ class Game{
         }
         if (key == "softdrop"){
             this.handler.downSoftDrop();
-            this.softDrop();
         }
         if (key == "cw"){
             this.mino.rotate(1, this.board);
@@ -115,7 +114,7 @@ class Game{
         if (key == "left"){
             this.handler.upLeft()
         }
-        if (key == "softrop"){
+        if (key == "softdrop"){
             this.handler.upSoftDrop()
         }
     }
