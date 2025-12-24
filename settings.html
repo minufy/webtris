@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>webtris</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body> 
+    <main>
+        <a href="index.html">back</a>
+        <h1>SETTINGS</h1>
+        <span class="popup" style="display: none;" id="popup"></span>
+        <div class="col">
+            <div class="frame">
+                <p>das</p> <input id="input-das" type="number">
+                <p>arr</p> <input id="input-arr" type="number">
+                <p>softdrop</p> <input id="input-softdrop" type="number">
+            </div>
+            <div class="frame">
+                <p>hold</p> <button id="button-hold" onclick="set('hold')"></button>
+                <p>cw</p> <button id="button-cw" onclick="set('cw')"></button>
+                <p>ccw</p> <button id="button-ccw" onclick="set('ccw')"></button>
+                <p>180</p> <button id="button-180" onclick="set('180')"></button>
+                <p>left</p> <button id="button-left" onclick="set('left')"></button>
+                <p>right</p> <button id="button-right" onclick="set('right')"></button>
+                <p>harddrop</p> <button id="button-harddrop" onclick="set('harddrop')"></button>
+                <p>softdrop</p> <button id="button-softdrop" onclick="set('softdrop')"></button>
+                <p>restart</p> <button id="button-restart" onclick="set('restart')"></button>
+            </div>
+        </div>
+    </main>
+    <script src="settings.js"></script>
+</body>
+</html>

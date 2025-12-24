@@ -76,6 +76,7 @@ class Game{
     }
 
     keyDown(key){
+        console.log(key)
         if (key == "right"){
             this.handler.downRight()
             this.mino.move(1, 0, this.board);

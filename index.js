@@ -5,11 +5,32 @@ let ctx = canvas.getContext("2d");
 
 const UNIT = 24;
 
-const handling = {
+let handling = {
     "das": 117,
     "arr": 0,
     "softdrop": 0
-};
+}; 
+let buttons = [
+    "hold",
+    "cw",
+    "ccw",
+    "180",
+    "left",
+    "right",
+    "harddrop",
+    "softdrop",
+    "restart",
+]
+let codeToKey = {};
+function init(){
+    for (let i in handling){
+        handling[i] = localStorage.getItem("handling-"+i);
+    }
+    for (let i=0; i<buttons.length; i++){
+        codeToKey[localStorage.getItem(buttons[i])] = buttons[i];
+    }
+}
+
 let game = new Game(handling, null);
 
 let lastTime = 0;
@@ -27,23 +48,13 @@ function gameLoop(currentTime){
 }
 requestAnimationFrame(gameLoop);
 
-const keysToCode = {
-    "Shift": "hold",
-    "ArrowUp": "cw",
-    "Control": "ccw",
-    "a": "180",
-    "ArrowLeft": "left",
-    "ArrowRight": "right",
-    " ": "harddrop",
-    "ArrowDown": "softdrop",
-    "r": "restart",
-}
-
 document.addEventListener("keydown", function (e){
     if (e.repeat) return;
-    game.keyDown(keysToCode[e.key])
+    game.keyDown(codeToKey[e.key.toLowerCase()]);
 });
 document.addEventListener("keyup", function (e){
     if (e.repeat) return;
-    game.keyUp(keysToCode[e.key])
+    game.keyUp(codeToKey[e.key.toLowerCase()]);
 });
+
+init();

@@ -1,10 +1,42 @@
 *{
     margin: 0;
     padding: 0;
+    color: white;
 }
 
 body{
     background-color: #333333;
     display: flex;
     justify-content: center;
+}
+
+a{
+    color: white;
+    opacity: 50%;
+    text-decoration: none;
+}
+a:hover{
+    opacity: 1;
+}
+
+button, input{
+    height: 2rem;
+    width: 6rem;
+    color: #333333;
+    border: none;
+    font-size: 1rem;
+    background-color: #eeeeee;
+    text-align: center;
+}
+
+.col{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.frame{
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
 }

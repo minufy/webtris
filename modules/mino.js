@@ -11,7 +11,7 @@ const I_OFFSETS = {
     "13": [[1, 0]],
     "20": [[0, 1]],
     "31": [[-1, 0]],
-}
+};
 
 const JLTSZ_OFFSETS = {
     "01": [[-1, 0], [-1, -1], [0, 2], [-1, 2]],
@@ -26,9 +26,9 @@ const JLTSZ_OFFSETS = {
     "13": [[1, 0], [1, -2], [1, -1], [0, -2], [0, -1]],
     "20": [[0, 1], [-1, 1], [1, 1], [-1, 0], [1, 0]],
     "31": [[-1, 0], [-1, -2], [-1, -1], [0, -2], [0, -1]],
-}
+};
 
-const MINO_TYPES = ["Z", "L", "O", "S", "I", "J", "T"]
+const MINO_TYPES = ["Z", "L", "O", "S", "I", "J", "T"];
 const MINO_COLORS = {
     "I": "#42AFE1",
     "J": "#1165B5",
@@ -39,7 +39,7 @@ const MINO_COLORS = {
     "Z": "#EB4F65",
     "X": "#555555",
     "H": "#444444",
-}
+};
 const MINO_SHAPES = {
     "I": {
         "0": [
@@ -195,7 +195,7 @@ const MINO_SHAPES = {
             [0, 1, 0],
         ],
     },
-}
+};
 
 class Mino{
     constructor(type, x, y, r=0){
