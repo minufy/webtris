@@ -31,7 +31,7 @@ function init(){
     }
 }
 
-let game = new Game(handling, null);
+let game = new Game(handling, ctx, null);
 
 let lastTime = 0;
 function gameLoop(currentTime){
@@ -55,6 +55,20 @@ document.addEventListener("keydown", function (e){
 document.addEventListener("keyup", function (e){
     if (e.repeat) return;
     game.keyUp(codeToKey[e.key.toLowerCase()]);
+});
+canvas.addEventListener("mousemove", function (e){
+    const rect = canvas.getBoundingClientRect();
+
+    const x = e.clientX-rect.left;
+    const y = e.clientY-rect.top;
+    
+    game.mouseMove(ctx, UNIT, x, y);
+});
+canvas.addEventListener("mousedown", function (e){
+    game.mouseDown(e.button);
+});
+canvas.addEventListener("mouseup", function (e){
+    game.mouseUp();
 });
 
 init();

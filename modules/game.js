@@ -11,6 +11,12 @@ class Game{
             this.seed = seed;
         this.rng = rng(this.seed);
         this.restart();
+        this.mouseDrawing = false;
+        this.mouseButton = null;
+        this.boardX = 0;
+        this.boardY = 0;
+        this.boardXOld = null;
+        this.boardYOld = null;
     }
     
     restart(seed=null){
@@ -119,6 +125,25 @@ class Game{
         }
     }
 
+    mouseDown(button){
+        this.mouseDrawing = true;
+        this.mouseButton = button;
+    }
+
+    mouseUp(){
+        this.boardXOld = null;
+        this.boardYOld = null;
+        this.mouseDrawing = false;
+    }
+
+    mouseMove(ctx, unit, x, y){
+        const [pos, posMargin] = this.getPos(ctx, unit);
+        const boardX = Math.floor((x-posMargin[0])/unit);
+        const boardY = Math.floor((y-posMargin[1])/unit);
+        this.boardX = boardX;
+        this.boardY = boardY;
+    }
+
     hold(){
         if (this.held)
             return;
@@ -134,6 +159,28 @@ class Game{
     }
 
     update(dt){
+        if (this.mouseDrawing){
+            if (this.boardX >= 0 && this.boardX < this.board.w && this.boardY >= 0 && this.boardY < this.board.h){
+                for (let _=0; _<this.board.h; _++){
+                    if (this.boardXOld == null)
+                        this.boardXOld = this.boardX;
+                    if (this.boardYOld == null)
+                        this.boardYOld = this.boardY;
+                    if (this.mouseButton == 0){
+                        this.board.set(this.boardXOld, this.boardYOld);
+                    }
+                    else{
+                        this.board.set(this.boardXOld, this.boardYOld, " ");
+                    }
+                    this.boardXOld += Math.sign(this.boardX-this.boardXOld);
+                    this.boardYOld += Math.sign(this.boardY-this.boardYOld);
+                    if (this.boardXOld == this.boardX && this.boardYOld == this.boardY)
+                        break;
+                }
+                this.boardXOld = this.boardX;
+                this.boardYOld = this.boardY;
+            }
+        }
         const movementQueue = this.handler.update(dt, this.board)
         for (let i=0; i<movementQueue.length; i++){
             this.mino.move(movementQueue[i][0], movementQueue[i][1], this.board);
@@ -146,19 +193,24 @@ class Game{
             if (!shadowMino.move(0, 1, this.board))
                 break;
         }
-        this.drawMino(ctx, unit, pos, shadowMino.x, shadowMino.y, shadowMino.type, shadowMino.r, MINO_COLORS["X"]);
+        this.drawMino(ctx, unit, pos, shadowMino.x, shadowMino.y, shadowMino.type, shadowMino.r, MINO_COLORS["H"]);
     }
 
-    draw(ctx, unit, offset=[0, 0]){
-        const pos = [ctx.canvas.clientWidth/2-this.board.w*unit/2+offset[0], ctx.canvas.clientHeight/2-this.board.h*unit/4+offset[1]];
+    getPos(ctx, unit){
+        const pos = [ctx.canvas.clientWidth/2-this.board.w*unit/2, ctx.canvas.clientHeight/2-this.board.h*unit/4];
         const posMargin = [pos[0], pos[1]-this.board.h/2*unit];
+        return [pos, posMargin];
+    }
+
+    draw(ctx, unit){
+        const [pos, posMargin] = this.getPos(ctx, unit);
         this.board.draw(ctx, unit, posMargin);
         this.drawShadow(ctx, unit, posMargin);
         this.drawMino(ctx, unit, posMargin, this.mino.x, this.mino.y, this.mino.type, this.mino.r, MINO_COLORS[this.mino.type]);
         if (this.holdType != ""){
             let color = MINO_COLORS[this.holdType];
             if (this.held)
-                color = MINO_COLORS["X"];
+                color = MINO_COLORS["H"];
             this.drawMino(ctx, unit, pos, -5, 1, this.holdType, 0, color);
         }
         this.drawNext(ctx, unit, pos);

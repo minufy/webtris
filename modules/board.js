@@ -14,7 +14,7 @@ class Board{
                 if (this.grid[y][x] == " "){
                     if (y >= this.h/2){
                         ctx.lineWidth = 1;
-                        ctx.strokeStyle = MINO_COLORS["X"];
+                        ctx.strokeStyle = MINO_COLORS["G"];
                         ctx.strokeRect(pos[0]+x*unit, pos[1]+y*unit, unit, unit);
                     }
                 }
@@ -28,6 +28,10 @@ class Board{
 
     setGrid(grid){
         this.grid = grid.map(row => [...row]);
+    }
+
+    set(x, y, type="G"){
+        this.grid[y][x] = type;
     }
 
     lineClear(){
