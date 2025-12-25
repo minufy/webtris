@@ -33,7 +33,7 @@ function set(name){
 }
 
 inputDas.addEventListener("change", function (e){
-    localStorage.setItem("handling-das", parseInt(e.target.valwue));
+    localStorage.setItem("handling-das", parseInt(e.target.value));
 });
 inputArr.addEventListener("change", function (e){
     localStorage.setItem("handling-arr", parseInt(e.target.value));
