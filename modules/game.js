@@ -47,7 +47,7 @@ class Game{
     }
 
     next(){
-        if (this.queue.length <= 5)
+        if (this.queue.length <= 7)
             this.fillQueue();
         this.mino = this.popQueue();
     }
@@ -189,7 +189,7 @@ class Game{
 
     drawShadow(ctx, unit, pos){
         let shadowMino = new Mino(this.mino.type, this.mino.x, this.mino.y, this.mino.r);
-        for (let _=0; _<this.board.h; _++){
+        for (let _=0; _<this.board.h; _++){ 
             if (!shadowMino.move(0, 1, this.board))
                 break;
         }
