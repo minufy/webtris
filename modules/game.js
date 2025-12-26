@@ -223,6 +223,21 @@ class Game{
     popQueue(){
         return new Mino(this.queue.shift(), this.board.w/2-2, this.board.h/2-4)
     }
+
+    addQueue(s){ 
+        for (let i=0; i<s.length; i++){
+            const si = s[i].toUpperCase();
+            if (MINO_TYPES.includes(si)){
+                this.queue.unshift(si);
+            }
+        }
+    }
+
+    setCurrent(type){
+        if (MINO_TYPES.includes(type)){
+           this.mino = new Mino(type, this.board.w/2-2, this.board.h/2-4)
+        }
+    }
 }
 
 export { Game };

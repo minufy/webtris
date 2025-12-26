@@ -40,3 +40,7 @@ button, input{
     flex-direction: column;
     gap: 0.4rem;
 }
+
+nav *{
+    margin-right: 0.5rem;
+}

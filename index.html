@@ -8,9 +8,19 @@
 </head>
 <body>
     <div class="frame">
-        <a href="settings.html">settings</a>
-        <canvas oncontextmenu="return false;" width="600" height="700"></canvas>
+        <nav>
+            <a href="index.html">game</a>
+            <a href="settings.html">settings</a>
+            <a href="help.html">help</a>
+        </nav>
+        <div class="buttons">
+            <button id="edit-next">edit next</button>
+            <button id="edit-current">edit current</button>
+            <button id="edit-hold">edit hold</button>
+        </div>
+        <canvas id="game" oncontextmenu="return false;" width="600" height="700"></canvas>
     </div>
+    <canvas style="display: none;" id="paste"></canvas>
     <script type="module" src="index.js"></script>
 </body>
 </html>
